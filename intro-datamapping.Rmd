@@ -5,7 +5,7 @@ date: "May 19, 2020"
 output: ioslides_presentation
 widescreen: true
 theme: default
-logo: /Users/echel/Downloads/rladies.jpeg
+logo: presentation-images/rladies.jpeg
 ---
 
 ```{r setup, include=FALSE}
@@ -14,9 +14,9 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ## What is "geospatial" data? 
 
-- any data with that contains geographic coordinates (GPS)
-- can be tables, shapefiles, and even photographs
-- example: looking at maps to see the most recent earthquake
+- Any data with that contains geographic coordinates (GPS)
+- Can be tables, shapefiles, and even photographs
+- Example: looking at maps to see the most recent earthquake
 
 <center>
 <img src="presentation-images/2014hazmap-induced-lg.gif" height=400>
@@ -24,34 +24,35 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ## Geospatial data can be tricky!
 
-- locations are usually given by two distinct numbers
+- Locations are usually given by two distinct numbers
 
 <center>
-<img src="presentation-images/latitude-longitude-lines.jpg" height=200>
+<img src="presentation-images/latitude-longitude-lines.jpg" height=300>
 </center>
+</br>
 
 - To designate direction: sometimes positive or negative numbers, sometimes positive numbers with N/S or E/W next to them! 
 
 ## Geospatial data can be tricky!
 
 <center>
-<img src="presentation-images/latitude-longitude-lines.jpg" height=200>
+<img src="presentation-images/latitude-longitude-lines.jpg" height=300>
 </center>
-
+</br>
 - To designate location: decimal degrees (DD), degrees minutes seconds (DMS), degrees minutes.minutes (DM.M), and sometimes even meters (*what?!*)
 
 So... geospatial data can be <b>tricky</b>, and a bit sticky. But once you're used to it, it can be <b>*oh so satisfying*!</b>
 
 ## Geospatial Data and Science
 
-- tracking animals: where do they go? how do they interact with their environment? (__today__)
+- Tracking animals: *Where do they go? How do they interact with their environment?* (<b>today</b>)
 
 <center>
 <img src="presentation-images/goldfish.gif" align="middle" height="200" margin="0 auto" />
 </center>
 
-- tracking flight patterns: can an airline add more flights to their schedule? 
-- predicting the next earth quake from previous earth quake locations
+- Tracking flight patterns: *Can an airline add more flights to their schedule?* 
+- Predicting the next earthquake from previous earthquake locations
 - and <b>*so much more*</b>!
 
 ## Imagine... 
@@ -103,10 +104,10 @@ Your Study Site
 
 <font color="white"> 
 
-- fish are tagged with *transmitters* 
-- transmitters send out a sound that's heard by underwater </br> *acoustic receivers* 
-- receivers record the DateTime, receiver location, and </br> tag ID # of the fish that sent the signal
-- if 3+ receivers are close together and hear the same fish </br> we can get the location of the fish too
+- Fish are tagged with *transmitters* 
+- Transmitters send out a sound that's heard by underwater </br> *acoustic receivers* 
+- Receivers record the DateTime, receiver location, and </br> tag ID # of the fish that sent the signal
+- If 3+ receivers are close together and hear the same fish </br> we can get the location of the fish too
 
 </font>
 
@@ -114,9 +115,9 @@ Your Study Site
 
 In your toolbox: 
 
-- a shapefile with wastewater outfall location
-- a shapefile with water depths (bathymetry)
-- a shapefile with US states (land masses)
+- shapefile with wastewater outfall location
+- shapefile with water depths (bathymetry)
+- shapefile with US states (land masses)
 - tagged fish locations
 
 <center><img src="presentation-images/Toolbox.jpg" height=100></center>
@@ -126,7 +127,7 @@ In your toolbox:
 - A set of geospatial files (.shp, .shx, .dbf, .prj) that can map themselves
 - The set must stay together, or the file breaks, but you only open the .shp
 
-## Start with the Basics
+## Start with the Basics 
 
 <b>Step 1. </b>Load required packages.
 ```{r load, echo=TRUE, message=FALSE, warning=FALSE}
@@ -142,7 +143,7 @@ states <- readOGR("sample-data/shapefiles/us-states.shp", verbose=FALSE)
 ```
 
 
-## Start with the Basics
+## Start with the Basics {.smaller}
 
 <b>Step 3. </b>Check coordinate systems.
 ```{r, echo=TRUE}
@@ -193,6 +194,7 @@ head(fish_locations, n=2)
 ## Re-Formatting 
 
 For this plot, I want to be kind of fancy. 
+</br>
 I want the fish locations to be color-coded by time. 
 
 ```{r, echo=TRUE}
@@ -260,7 +262,7 @@ points(fish_locations$LON, fish_locations$LAT, pch=20,
 
 <font color="white">
 Now we can start looking at some characteristics. 
-
+</br>
 We can answer questions like:
 
 - *Which depth contour is this fish spending most </br> of its time?*
@@ -271,8 +273,8 @@ We can answer questions like:
 ## "Which Depths?"
 
 In *depths* shapefile, the "field_3" gives the depth in meters
-
--30 == 30 meters depth
+</br>
+Where -30 == 30 meters depth
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
 library(geosphere)
@@ -280,7 +282,7 @@ library(geosphere)
  
 ```{r echo=TRUE, message=FALSE, warning=FALSE}
 # Grab random sample (for processing speed)
-random_sample <- fish_locations[sample(nrow(fish_locations), 10), ]
+random_sample <- fish_locations[sample(nrow(fish_locations), 1000), ]
 
 # Figure out the shapefile attribute that is closest to the fish gps point
 distance_depths <- dist2Line(random_sample[,c("LON", "LAT")], depths)
@@ -407,7 +409,36 @@ new_theme <- theme(panel.background =
 ## Phew! Is there an easier way to mapping? 
 
 - *ggplot* is a lot like *matplotlib* in python
-- lots of little steps to create a nice plot
-- but it gets pretty tricky when you're trying to add your own shapefiles
+- Lots of little steps to create a nice plot
+- But it gets pretty tricky when you're trying to add your own shapefiles or trying to have a very fine-scale spatial resolution
 
-<center><img src="presentation-images/data-minds.jpeg" height=350></center>
+<center><img src="presentation-images/data-minds.jpeg" height=300></center>
+
+## Quick Recap
+
+Mapping in R can be difficult, but geospatial data can answer some very interesting questions. 
+</br>
+</br>
+Once you get the hang of it, mapping in R can be very rewarding! 
+
+<img src="presentation-images/map.png" height=400>
+
+## {data-background=presentation-images/questions.jpg data-background-size=cover}
+
+<font size=7 color="black"><b>Thank you!</b></font>
+
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+
+<font color="black">Twitter: echelle_burns</font>

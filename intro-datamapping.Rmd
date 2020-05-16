@@ -12,6 +12,18 @@ logo: presentation-images/rladies.jpeg
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
+## Packages for This Presentation
+
+In order of occurence:
+
+- *rgdal* (reading in shapefiles)
+- *fields* (color scheme)
+- *geosphere* (calculating distance between points)
+- *tidyverse* (mostly for ggplot)
+- *maps* (for clean basemap)
+
+<center><img src="presentation-images/package.jpg" height=250></center>
+
 ## What is "geospatial" data? 
 
 - Any data with that contains geographic coordinates (GPS)
@@ -136,7 +148,7 @@ library(rgdal)
 
 <b>Step 2. </b>Load shapefiles.
 ```{r echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
-outfall <- readOGR("sample-data/shapefiles/outfalls_reproject_02092016_2.shp",
+outfall <- readOGR("sample-data/shapefiles/outfall-reproject.shp",
                    verbose=FALSE)
 depths <- readOGR("sample-data/shapefiles/all-depths.shp", verbose=FALSE)
 states <- readOGR("sample-data/shapefiles/us-states.shp", verbose=FALSE)
@@ -412,7 +424,9 @@ new_theme <- theme(panel.background =
 - Lots of little steps to create a nice plot
 - But it gets pretty tricky when you're trying to add your own shapefiles or trying to have a very fine-scale spatial resolution
 
-<center><img src="presentation-images/data-minds.jpeg" height=300></center>
+<center><img src="presentation-images/data-minds.jpeg" height=250></center>
+
+<center>__Leaflet for R is also so cool!__</center>
 
 ## Quick Recap
 

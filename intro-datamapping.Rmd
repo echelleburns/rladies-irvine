@@ -77,9 +77,9 @@ You're a marine biologist, studying fish movement patterns.
 - *How close are these fish to the outfall pipe?*
 
 <center>
-<img src="presentation-images/PLEVER.tif" height=100>
-<img src="presentation-images/SEBMIN.tif" height=100>
-<img src="presentation-images/PARVET.tif" height=100>
+<img src="presentation-images/PLEVER.png" height=100>
+<img src="presentation-images/SEBMIN.png" height=100>
+<img src="presentation-images/PARVET.png" height=100>
 </center>
 <center><font size=1.5>Images courtesy of Dr. Larry Allen (CSU Northridge)</font></center>
 
